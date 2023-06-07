@@ -12,7 +12,7 @@
     <script src="https://kit.fontawesome.com/671cc826ed.js" crossorigin="anonymous"></script>
 </head>
 
-<body id="body" style="overflow-x: hidden;">
+<body id="body" class="fon">
 
     <style>
         .home {
@@ -44,10 +44,103 @@
                 grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             }
         }
+
         @media (max-width: 442px) {
             .row {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        .mobile-menu {
+            position: absolute;
+            left: -320px;
+            top: 0;
+            background-color: white;
+            z-index: 100;
+            height: 100vh;
+            width: 220px;
+            padding: 20px 20px;
+            transition: 1s;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-top: 20px;
+            font-size: 19px;
+        }
+
+        .exit {
+            position: absolute;
+            top: 7px;
+            right: 13px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .mobile-menu ul li i {
+            margin-left: 7px;
+            font-size: 13px;
+        }
+
+        .nav-links-normal ul li {
+            list-style: none;
+            display: inline-block;
+            margin-right: 10px;
+            padding: 8px 12px;
+            position: relative;
+            transition: 0.5s ease;
+        }
+
+        .nav-links-normal ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links-normal ul li::after {
+            content: '';
+            width: 0%;
+            height: 2px;
+            background: #E3B873;
+            display: block;
+            margin: auto;
+            transition: 0.5s;
+        }
+
+        .nav-links-normal ul li:hover::after {
+            width: 100%;
+        }
+
+        .mobile-links ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        @media(max-width: 1076px) {
+
+            .nav-links-normal{
+                display: none;
+            }
+
+            nav .fa-solid {
+                display: block;
+                color: #fff;
+                margin: 10px;
+                font-size: 22px;
+                cursor: pointer;
+            }
+
+            .nav-links ul {
+                padding: 30px;
+            }
+
+            .phone-number,
+            .nav-btn {
+                display: none;
             }
         }
     </style>
@@ -82,9 +175,23 @@
     </section>
 
     <section class="home" id="home">
+        <div class="mobile-menu" style="background-color: #E3B873;">
+            <div class="mobile-head">
+                <a href="{% url 'home' %}"><img src="{% static 'img/logo (2).png' %}" alt=""></a>
+                <i class="fa-solid fa-xmark exit" onclick="Exit()"></i>
+            </div>
+            <nav class="mobile-links">
+                <ul>
+                    <li><a href="/#our-menu" class="menu-item" onclick="Exit()">ГЛАВНАЯ</a></li>
+                    <li><a href="/#about-us" class="menu-item" onclick="Exit()">О НАС</a></li>
+                    <li><a href="/#rooms" class="menu-item" onclick="Exit()">НОМЕРА</a></li>
+                    <li><a href="/#contacts" class="menu-item" onclick="Exit()">КОНТАКТЫ</a></li>
+                </ul>
+            </nav>
+        </div>
         <nav>
             <a href="index.html"><img src="{% static 'img/logo (2).png' %}" style="width: 120px;"></a>
-            <div class="nav-links" id="navLinks">
+            <div class="nav-links-normal" id="navLinks">
                 <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
                 <ul>
                     <li><a href="#" onclick="hideMenu()">ГЛАВНАЯ</a></li>
@@ -97,7 +204,7 @@
                 <a class="phone-number" href="#" style="color:#E3B873;margin-right: 44px;">+7 (8172) 70-75-72</a>
                 <a href="#" class="nav-btn" onclick="ShowBron()">ЗАБРОНИРОВАТЬ</a>
             </div>
-            <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+            <i class="fa-solid fa-bars" onclick="showNormalMenu()"></i>
         </nav>
         <div class="text-box">
             <h1 class="hidden heads">ГОСТИНИЧНЫЙ <br> КОМПЛЕКС <span style="color:#E3B873">«ТриА»</span></h1>
@@ -120,7 +227,7 @@
         <h1 class="hidden heading">НОМЕРА</h1>
         <p class="hidden-el description">Все номера декорированы в одном стиле, а их оснащение соответствует высоким
             стандартам гостиничного бизнеса</p>
-            
+
         <div class="row">
             {% for room in rooms %}
             <div class="facilities-col hidden">
@@ -155,7 +262,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    
+
     <script>
 
         gsap.from("#about-us", {
@@ -205,14 +312,16 @@
 
         var navlinks = document.getElementById("navLinks");
 
-        function showMenu() {
-            navlinks.style.right = "0";
-            buddy.classList.toggle("not-scroll");
-        }
+        var bar = document.querySelector(".mobile-menu");
+        var bodyTag = document.querySelector(".fon");
 
-        function hideMenu() {
-            navlinks.style.right = "-200px";
-            buddy.classList.toggle("scroll");
+        function showNormalMenu() {
+            bar.style.left = "0px";
+            bodyTag.style.overflow = 'hidden';
+        }
+        function Exit() {
+            bar.style.left = "-320px";
+            bodyTag.style.overflow = 'visible';
         }
     </script>
 </body>
