@@ -1,0 +1,328 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="https://kit.fontawesome.com/671cc826ed.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+</head>
+
+<body id="body" style="overflow-x: hidden;">
+
+    <style>
+        html {
+            scroll-behavior: auto;
+        }
+
+        .contacts {
+            margin-top: 0%;
+            position: relative;
+        }
+
+        .fa-arrow-down-long {
+            margin-top: 20px;
+            font-size: 42px;
+            color: #c5a674;
+            animation: neon 3s infinite;
+            cursor: pointer;
+        }
+
+        .fa-arrow-down-long:hover {
+            transform: translateY(20px);
+        }
+
+        .room-img-box {
+            width: 70%;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .row {
+            margin-top: 20%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .special {
+            top: 25%;
+            left: 25%;
+        }
+
+        .swiper {
+            height: 550px;
+            margin-bottom: 20px;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
+        .container {
+            padding-left: 15%;
+            padding-bottom: 40px;
+        }
+
+        .room-heading {
+            cursor: pointer;
+            font-size: 70px;
+        }
+
+        .room-price {
+            font-size: 26px;
+            color: #c5a674;
+        }
+        .room-price span{
+            font-size: 24px;
+        }
+
+        .prices {
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        @media (max-width: 1152px){
+            .room-heading{
+                font-size: 50px;
+            }
+            .room-price{
+                font-size: 22px;
+            }
+        }
+        @media (max-width: 805px){
+            .prices{
+                display: block;
+            }
+            .hero-btn{
+                margin-top: 10px;
+            }
+            .swiper{
+                height: 450px;
+            }
+        }
+        @media (max-width: 565px){
+            .swiper{
+                height: 400px;
+            }
+        }
+        @media (max-width: 426px){
+            .swiper{
+                height: 350px;
+                margin-top: 0;
+            }
+        }
+        @media (max-width: 390px){
+            .swiper{
+                height: 320px;
+            }
+            .room-price{
+                font-size: 17px;
+            }
+            .room-price span{
+                font-size: 16px;
+            }
+            .room-heading{
+                font-size: 36px;
+            }
+        }
+    </style>
+
+    <section class="form">
+        <div class="form-box">
+            <div class="form-value">
+                <form action="https://formspree.io/f/mbjezogk" method="POST">
+                    <i class="fa-solid fa-xmark exit" onclick="HideBron()"></i>
+                    <h2 class="form-heading">Забронировать номер</h2>
+                    <div class="form-input-box">
+                        <label>Имя</label>
+                        <input class="form-input" type="text" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-input-box">
+                        <label>Телефон</label>
+                        <input class="form-input" type="text" placeholder="Номер телефона" required>
+                    </div>
+                    <div class="form-input-box">
+                        <label>Дата</label>
+                        <input class="form-input" type="datetime-local" placeholder="Дата въезда" required>
+                    </div>
+                    <div class="form-input-box">
+                        <label>Количество</label>
+                        <input class="form-input" type="number" placeholder="Количество человек" required>
+                    </div>
+                    <button style="margin-top: -40px; font-size: 13px;transition: 0.7s;" class="hero-btn"
+                        onclick="ShowBron()">ЗАБРОНИРОВАТЬ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacts">
+        <div class="text-box" style="text-align: center;">
+            <a href="#contacts"><i class="hidden-el neonText fa-solid fa-arrow-down-long"></i></a>
+        </div>
+    </section>
+    <section class="contacts container" id="contacts" style="padding-top: 40px;">
+        <h1 class="hidden-el room-heading" style="color: #c5a674;">{{ object.title }}</h1>
+        <div class="room-img-box">
+            <!-- <img src="{{ img.title.url }}"> -->
+            <div class="swiper hidden">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    {% for img in object.roomphoto_set.all %}
+                    <div class="swiper-slide"><img src="{{ img.title.url }}"></div>
+                    {% endfor %}
+                </div>
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev" style="color: #c5a674"></div>
+                <div class="swiper-button-next" style="color: #c5a674"></div>
+            </div>
+        </div>
+        <div class="prices">
+            <div>
+                <p class="room-price hidden" style="padding-top: 3%;">Цена без завтрака: <span style="color: #fff;">{{ object.price }}</span></p>
+                <p class="room-price hidden">Цена с завтраком: <span style="color: #fff;">{{ object.price_2 }}</span></p>
+            </div>
+            <a class="hero-btn hidden-el" onclick="ShowBron()">ЗАБРОНИРОВАТЬ НОМЕР</a>
+        </div>
+    </section>
+
+    <section class="contacts" id="contacts">
+        <div class="text-box" style="text-align: center;">
+            <h1 class="hidden neonText"><a href="/#" style="text-decoration: none; color:#c5a674;">«ТриА»</a></h1>
+        </div>
+        <div class="footer">
+            <p class="hidden-el" style="color:#adadad;">+7 (8172) 70-75-71</p>
+            <div class="links">
+                <i class="fa-brands fa-instagram hidden-el" style="margin-right: 6px;"></i>
+                <a href="https://vk.com/hotel_tria"><i class="fa-brands fa-vk hidden-el"></i></a>
+            </div>
+            <p class="hidden-el" style="color:#adadad;">+7 (8172) 70-75-72</p>
+            <div class="links hide">
+                <i class="fa-brands fa-instagram hidden-el" style="margin-right: 6px;color:#adadad;"></i>
+                <a href="https://vk.com/hotel_tria"><i class="fa-brands fa-vk hidden-el" style="color:#adadad;"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Добавить плавную прокрутку до всех ссылок
+            $("a").on('click', function (event) {
+
+                // Убедись в этом что .hash имеет значение перед переопределением поведения по умолчанию
+                if (this.hash !== "") {
+                    // Запретить поведение щелчка якоря по умолчанию
+                    event.preventDefault();
+
+                    // Хранить хэш
+                    var hash = this.hash;
+
+                    // Использование метода animate() jQuery для добавления плавной прокрутки страницы
+                    // Необязательное число (800) указывает количество миллисекунд, необходимых для прокрутки до указанной области
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 900, function () {
+
+                        // Добавить хэш (#) для URL-адреса после завершения прокрутки (поведение щелчка по умолчанию)
+                        window.location.hash = hash;
+                    });
+                } // Конец, если
+            });
+        });
+    </script>
+    <script>
+
+        const swiper = new Swiper('.swiper', {
+            speed: 2000,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                speed: 2500,
+            },
+            // Optional parameters
+            loop: true,
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            keyboard: true,
+        });
+
+        gsap.from("#about-us", {
+            scrollTrigger: {
+                scrub: true
+            },
+            y: 450,
+        })
+        gsap.from("#rooms", {
+            scrollTrigger: {
+                scrub: true
+            },
+            y: 250,
+        })
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            })
+        })
+        setTimeout(() => {
+            const hiddenElements = document.querySelectorAll('.hidden');
+            const hiddenElems = document.querySelectorAll('.hidden-el');
+            hiddenElements.forEach((el) => observer.observe(el));
+            hiddenElems.forEach((el) => observer.observe(el));
+        }, 250);
+
+
+        var form = document.querySelector(".form");
+        var formbox = document.querySelector(".form-box");
+
+        var buddy = document.getElementById("body");
+
+        function ShowBron() {
+            form.style.display = 'flex';
+        }
+
+        function HideBron() {
+            form.style.display = 'none';
+        }
+
+        var navlinks = document.getElementById("navLinks");
+        
+
+        function showMenu() {
+            navlinks.style.right = "0";
+            buddy.classList.toggle("not-scroll");
+        }
+
+        function hideMenu() {
+            navlinks.style.right = "-200px";
+            buddy.classList.toggle("scroll");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="https://kit.fontawesome.com/671cc826ed.js" crossorigin="anonymous"></script>
+</head>
+
+<body id="body" style="overflow-x: hidden;">
+
+    <style>
+        .home {
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../../static/img/23.jpg);
+        }
+
+        .about-us {
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../../static/img/11.jpg);
+        }
+
+        .row {
+            margin-top: 3%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-gap: 40px;
+        }
+
+        .facilities-col {
+            flex-basis: 31%;
+            border-radius: 10px;
+            text-align: left;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        @media (max-width: 1077px) {
+            .row {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
+        @media (max-width: 442px) {
+            .row {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+    </style>
+
+    <section class="form">
+        <div class="form-box">
+            <div class="form-value">
+                <form action="https://formspree.io/f/mbjezogk" method="POST">
+                    <i class="fa-solid fa-xmark exit" onclick="HideBron()"></i>
+                    <h2 class="form-heading">Забронировать номер</h2>
+                    <div class="form-input-box">
+                        <label>Имя</label>
+                        <input class="form-input" type="text" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-input-box">
+                        <label>Телефон</label>
+                        <input class="form-input" type="text" placeholder="Номер телефона" required>
+                    </div>
+                    <div class="form-input-box">
+                        <label>Дата</label>
+                        <input class="form-input" type="datetime-local" placeholder="Дата въезда" required>
+                    </div>
+                    <div class="form-input-box">
+                        <label>Количество</label>
+                        <input class="form-input" type="number" placeholder="Количество человек" required>
+                    </div>
+                    <button style="margin-top: -40px; font-size: 13px;transition: 0.7s;" class="hero-btn"
+                        onclick="ShowBron()">ЗАБРОНИРОВАТЬ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="home" id="home">
+        <nav>
+            <a href="index.html"><img src="{% static 'img/logo (2).png' %}" style="width: 120px;"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="#" onclick="hideMenu()">ГЛАВНАЯ</a></li>
+                    <li><a href="#about-us" onclick="hideMenu()">О НАС</a></li>
+                    <li><a href="#rooms" onclick="hideMenu()">НОМЕРА</a></li>
+                    <li><a href="#contacts" onclick="hideMenu()">КОНТАКТЫ</a></li>
+                </ul>
+            </div>
+            <div class="right-side">
+                <a class="phone-number" href="#" style="color:#E3B873;margin-right: 44px;">+7 (8172) 70-75-72</a>
+                <a href="#" class="nav-btn" onclick="ShowBron()">ЗАБРОНИРОВАТЬ</a>
+            </div>
+            <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <div class="text-box">
+            <h1 class="hidden heads">ГОСТИНИЧНЫЙ <br> КОМПЛЕКС <span style="color:#E3B873">«ТриА»</span></h1>
+            <p class="hidden-el">Мы ценим Ваше время и стремление к комфорту!</p>
+            <a class="hero-btn hidden" onclick="ShowBron()">ЗАБРОНИРОВАТЬ НОМЕР</a>
+        </div>
+    </section>
+
+    <section class="about-us" id="about-us">
+        <div class="text-box" style="text-align: center;">
+            <h1 class="hidden-el">Уважаемые Дамы и Господа!</h1>
+            <p class="hidden-el">Сердечно приветствуем Вас в нашем городе Вологда и гостиничном
+                комплексе «ТриА»! Для вас<br> уютная и комфортабельная гостиница, а также ресторан и автомойка!</span>
+            </p>
+            <a class="hero-btn hidden-el" onclick="ShowBron()">ЗАБРОНИРОВАТЬ НОМЕР</a>
+        </div>
+    </section>
+
+    <section class="facilities" id="rooms" style="margin-top: 30px;">
+        <h1 class="hidden heading">НОМЕРА</h1>
+        <p class="hidden-el description">Все номера декорированы в одном стиле, а их оснащение соответствует высоким
+            стандартам гостиничного бизнеса</p>
+            
+        <div class="row">
+            {% for room in rooms %}
+            <div class="facilities-col hidden">
+                <img src="{{ room.img.url }}">
+                <h3>{{ room.title }}</h3>
+                <p>
+                    {{ room.description }}
+                </p>
+                <a href="{% url 'room_detail' room.url %}" class="bron-btn">Забронировать</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="contacts" id="contacts">
+        <div class="text-box" style="text-align: center;">
+            <h1 class="hidden neonText">«ТриА»</h1>
+        </div>
+        <div class="footer">
+            <p class="hidden-el" style="color:#adadad;">+7 (8172) 70-75-71</p>
+            <div class="links">
+                <i class="fa-brands fa-instagram hidden-el" style="margin-right: 6px;"></i>
+                <a href="https://vk.com/hotel_tria"><i class="fa-brands fa-vk hidden-el"></i></a>
+            </div>
+            <p class="hidden-el" style="color:#adadad;">+7 (8172) 70-75-72</p>
+            <div class="links hide">
+                <i class="fa-brands fa-instagram hidden-el" style="margin-right: 6px;color:#adadad;"></i>
+                <a href="https://vk.com/hotel_tria"><i class="fa-brands fa-vk hidden-el" style="color:#adadad;"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    
+    <script>
+
+        gsap.from("#about-us", {
+            scrollTrigger: {
+                scrub: true
+            },
+            y: 450,
+        })
+        gsap.from("#rooms", {
+            scrollTrigger: {
+                scrub: true
+            },
+            y: 250,
+        })
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            })
+        })
+        setTimeout(() => {
+            const hiddenElements = document.querySelectorAll('.hidden');
+            const hiddenElems = document.querySelectorAll('.hidden-el');
+            hiddenElements.forEach((el) => observer.observe(el));
+            hiddenElems.forEach((el) => observer.observe(el));
+        }, 250);
+
+
+        var form = document.querySelector(".form");
+        var formbox = document.querySelector(".form-box");
+
+        var buddy = document.getElementById("body");
+
+        function HideBron() {
+            form.style.display = 'none';
+            buddy.classList.toggle("scroll");
+        }
+
+        function ShowBron() {
+            form.style.display = 'flex';
+            buddy.classList.toggle("not-scroll")
+        }
+
+        var navlinks = document.getElementById("navLinks");
+
+        function showMenu() {
+            navlinks.style.right = "0";
+            buddy.classList.toggle("not-scroll");
+        }
+
+        function hideMenu() {
+            navlinks.style.right = "-200px";
+            buddy.classList.toggle("scroll");
+        }
+    </script>
+</body>
+
+</html>
