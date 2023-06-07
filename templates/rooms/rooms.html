@@ -45,10 +45,17 @@
             }
         }
 
+        .logo{
+            width: 120px;
+        }
+
         @media (max-width: 442px) {
             .row {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .logo{
+                width: 85px;
             }
         }
 
@@ -143,6 +150,7 @@
                 display: none;
             }
         }
+
     </style>
 
     <section class="form">
@@ -190,7 +198,7 @@
             </nav>
         </div>
         <nav>
-            <a href="index.html"><img src="{% static 'img/logo (2).png' %}" style="width: 120px;"></a>
+            <a href="index.html"><img src="{% static 'img/logo (2).png' %}" class="logo"></a>
             <div class="nav-links-normal" id="navLinks">
                 <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
                 <ul>
