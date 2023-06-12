@@ -45,18 +45,8 @@
             }
         }
 
-        .logo{
+        .logo {
             width: 120px;
-        }
-
-        @media (max-width: 442px) {
-            .row {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-            .logo{
-                width: 85px;
-            }
         }
 
         .mobile-menu {
@@ -129,7 +119,7 @@
 
         @media(max-width: 1076px) {
 
-            .nav-links-normal{
+            .nav-links-normal {
                 display: none;
             }
 
@@ -151,6 +141,117 @@
             }
         }
 
+        .avto {
+            min-height: 100vh;
+            width: 100%;
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../img/23.jpg);
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+
+        .contacts {
+            margin-top: 0;
+        }
+
+        .avto-info {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        .heading,
+        .description {
+            text-align: center;
+        }
+
+        .moika {
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../../static/img/30.jpg);
+            margin-top: 7%;
+        }
+
+        .col-2 {
+            flex-basis: 50%;
+            min-width: 300px;
+        }
+
+        .col-2 img {
+            max-width: 100%;
+            padding: 50px 0;
+        }
+
+        .col-2 h1 {
+            font-size: 30px;
+            line-height: 1.3;
+            margin: 25px 0;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color:#4e4e4e;
+        }
+
+        .col-2 ul li {
+            font-size: 20px;
+        }
+        .col-2 ul li::marker{
+            font-size: 24px;
+            color: #cea768;
+        }
+
+        @media (max-width: 442px) {
+            .row {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .logo {
+                width: 85px;
+            }
+
+            .moika {
+                margin-top: 15%;
+            }
+            .col-2 h1{
+                font-size: 20px;
+                margin-top: -5px;
+            }
+            .no-mrg{
+                margin-bottom: -60px;
+            }
+        }
+        .row-container{
+            padding: 0 8%;
+        }
+        @media(max-width: 1390px){
+            .col-2 h1{
+                font-size: 22px;
+                margin-top: -5px;
+            }
+        }
+        @media(max-width: 1176px){
+            .col-2 h1{
+                font-size: 19px;
+                margin-top: 3%;
+            }
+        }
+        @media(max-width: 993px){
+            .col-2 h1{
+                font-size: 17px;
+                margin-top: 3%;
+            }
+        }
+        @media(max-width: 880px){
+            .col-2 h1{
+                text-align: center;
+            }
+            .col-2 img{
+                margin-top: -15%;
+            }
+        }
+        @media(max-width: 442px){
+            .col-2 img{
+                margin-top: 0%;
+            }
+        }
     </style>
 
     <section class="form">
@@ -250,6 +351,40 @@
         </div>
     </section>
 
+    <section class="home moika">
+        <div class="text-box" style="text-align: center;">
+            <h1 class="hidden-el" style="margin-bottom: 10px;">Также автомойка «ТриА» <br>к вашим услугам!</h1>
+            <a class="hero-btn hidden-el" href="#avto">ИНФОРМАЦИЯ</a>
+        </div>
+    </section>
+
+    <section class="avto-info" id="avto">
+        <h1 class="hidden heading" style="margin-top: 3%;">АВТОМОЙКА</h1>
+        <p class="hidden-el description">Услуги автомойки имеют широкий спектр, который не оставит Вас равнодушными</p>
+        <div class="row-container">
+            <div class="row" style="align-items: center;margin-top: 0;">
+                <div class="facilities-col no-mrg hidden">
+                    <div class="col-2">
+                        <h1>Автомоечный комплекс <span style="color:#E3B873">«ТриА»</span> <br> распологает 5 боксами, в которых <br> оказывается широчайший спектр
+                            услуг <br> автомоечного комплекса:</h1>
+                        <ul style="margin-left: 8%;">
+                            <li>облив кузова автомобиля</li>
+                            <li>современные химчистки салонов</li>
+                            <li>мойка автомобилей и грузовиков</li>
+                            <li>мойка мотоциклов и скутеров</li>
+                            <li>мойка велосипедов</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="facilities-col hidden">
+                    <div class="col-2">
+                        <img src="{% static 'img/28.jpg' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="contacts" id="contacts">
         <div class="text-box" style="text-align: center;">
             <h1 class="hidden neonText">«ТриА»</h1>
@@ -267,6 +402,8 @@
             </div>
         </div>
     </section>
+
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>

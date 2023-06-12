@@ -18,6 +18,7 @@
     <style>
         html {
             scroll-behavior: auto;
+            overflow-x: hidden;
         }
 
         .contacts {
@@ -68,13 +69,14 @@
         }
 
         .container {
+            width: 100%;
             padding-left: 15%;
             padding-bottom: 40px;
         }
 
         .room-heading {
             cursor: pointer;
-            font-size: 70px;
+            font-size: 55px;
         }
 
         .room-price {
@@ -120,16 +122,19 @@
                 height: 350px;
                 margin-top: 0;
             }
+            .room-heading{
+                font-size: 38px;
+            }
         }
         @media (max-width: 390px){
             .swiper{
                 height: 320px;
             }
             .room-price{
-                font-size: 17px;
+                font-size: 19px;
             }
             .room-price span{
-                font-size: 16px;
+                font-size: 17px;
             }
             .room-heading{
                 font-size: 36px;
@@ -186,31 +191,27 @@
             <a href="#contacts"><i class="hidden-el neonText fa-solid fa-arrow-down-long"></i></a>
         </div>
     </section>
-    <section class="contacts container" id="contacts" style="padding-top: 40px;">
-        <h1 class="hidden-el room-heading" style="color: #c5a674;">{{ object.title }}</h1>
-        <div class="room-img-box">
-            <!-- <img src="{{ img.title.url }}"> -->
-            <div class="swiper hidden">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                    {% for img in object.roomphoto_set.all %}
-                    <div class="swiper-slide"><img src="{{ img.title.url }}"></div>
-                    {% endfor %}
+    <section class="contacts" id="contacts" style="padding-top: 40px;">
+        <div class="container">
+            <h1 class="hidden-el room-heading" style="color: #c5a674;">{{ object.title }}</h1>
+            <div class="room-img-box">
+                <div class="swiper hidden">
+                    <div class="swiper-wrapper">
+                        {% for img in object.roomphoto_set.all %}
+                        <div class="swiper-slide"><img src="{{ img.title.url }}"></div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-button-prev" style="color: #c5a674"></div>
+                    <div class="swiper-button-next" style="color: #c5a674"></div>
                 </div>
-                <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev" style="color: #c5a674"></div>
-                <div class="swiper-button-next" style="color: #c5a674"></div>
             </div>
-        </div>
-        <!-- <div class="numbers hidden">
-            <a href="">1</a>
-        </div> -->
-        <div class="prices">
-            <div>
-                <p class="room-price hidden" style="padding-top: 3%;">Цена без завтрака: <span style="color: #fff;">{{ object.price }}</span></p>
-                <p class="room-price hidden">Цена с завтраком: <span style="color: #fff;">{{ object.price_2 }}</span></p>
+            <div class="prices">
+                <div>
+                    <p class="room-price hidden" style="padding-top: 3%;">Цена без завтрака: <span style="color: #fff;">{{ object.price }}</span></p>
+                    <p class="room-price hidden">Цена с завтраком: <span style="color: #fff;">{{ object.price_2 }}</span></p>
+                </div>
+                <a class="hero-btn hidden-el" onclick="ShowBron()">ЗАБРОНИРОВАТЬ НОМЕР</a>
             </div>
-            <a class="hero-btn hidden-el" onclick="ShowBron()">ЗАБРОНИРОВАТЬ НОМЕР</a>
         </div>
     </section>
 
