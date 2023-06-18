@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-e6ff4.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-baf9c.up.railway.app']
 
 # Application definition
 
