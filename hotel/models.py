@@ -10,6 +10,7 @@ class Room(models.Model):
     price_2 = models.SmallIntegerField("Цена за сутки с завтраком", default=0)
     enable = models.SmallIntegerField("Сколько номеров данного типа свободно", default=0)
     url = models.SlugField(max_length=130, unique=True)
+    details = models.TextField("Детали", default='')
 
     class Meta:
         verbose_name = 'Номер'

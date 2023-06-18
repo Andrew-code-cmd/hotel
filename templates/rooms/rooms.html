@@ -186,13 +186,14 @@
             margin: 25px 0;
             text-transform: uppercase;
             letter-spacing: 1.2px;
-            color:#4e4e4e;
+            color: #4e4e4e;
         }
 
         .col-2 ul li {
             font-size: 20px;
         }
-        .col-2 ul li::marker{
+
+        .col-2 ul li::marker {
             font-size: 24px;
             color: #cea768;
         }
@@ -210,45 +211,54 @@
             .moika {
                 margin-top: 15%;
             }
-            .col-2 h1{
+
+            .col-2 h1 {
                 font-size: 20px;
                 margin-top: -5px;
             }
-            .no-mrg{
+
+            .no-mrg {
                 margin-bottom: -60px;
             }
         }
-        .row-container{
+
+        .row-container {
             padding: 0 8%;
         }
-        @media(max-width: 1390px){
-            .col-2 h1{
+
+        @media(max-width: 1390px) {
+            .col-2 h1 {
                 font-size: 22px;
                 margin-top: -5px;
             }
         }
-        @media(max-width: 1176px){
-            .col-2 h1{
+
+        @media(max-width: 1176px) {
+            .col-2 h1 {
                 font-size: 19px;
                 margin-top: 3%;
             }
         }
-        @media(max-width: 993px){
-            .col-2 h1{
+
+        @media(max-width: 993px) {
+            .col-2 h1 {
                 font-size: 17px;
                 margin-top: 3%;
             }
         }
-        @media(max-width: 880px){
-            .col-2 h1{
+
+        @media(max-width: 880px) {
+            .col-2 h1 {
                 text-align: center;
             }
-            .col-2 img{
+
+            .col-2 img {
                 margin-top: -15%;
             }
         }
-        @media(max-width: 442px){
-            .col-2 img{
+
+        @media(max-width: 442px) {
+            .col-2 img {
                 margin-top: 0%;
             }
         }
@@ -272,11 +282,21 @@
                         <label>Дата</label>
                         <input class="form-input" type="datetime-local" placeholder="Дата въезда" required>
                     </div>
-                    <div class="form-input-box">
+                    <div class="form-input-box" style="margin-bottom: -20px;">
                         <label>Количество</label>
                         <input class="form-input" type="number" placeholder="Количество человек" required>
                     </div>
-                    <button style="margin-top: -40px; font-size: 13px;transition: 0.7s;" class="hero-btn"
+                    <div class="form-input-box">
+                        <select id="selcolor" style="width: 100%; margin-bottom: 10px;">
+                            <option value="Люкс">Люкс</option>
+                            <option value="Одноместный">Одноместный</option>
+                            <option value="Двухместный с одной кроватью">Двухместный с одной кроватью</option>
+                            <option value="Двухместный">Двухместный</option>
+                            <option value="Семейный «ТриА»">Семейный «ТриА»</option>
+                            <option value="Люкс двухкомнатный">Люкс двухкомнатный</option>
+                        </select>
+                    </div>
+                    <button style="margin-top: 10px; font-size: 13px;transition: 0.7s;" class="hero-btn"
                         onclick="ShowBron()">ЗАБРОНИРОВАТЬ</button>
                 </form>
             </div>
@@ -353,7 +373,8 @@
 
     <section class="home moika">
         <div class="text-box" style="text-align: center;">
-            <h1 class="hidden-el" style="margin-bottom: 10px;">Также автомойка «ТриА» <br>к вашим услугам!</h1>
+            <h1 class="hidden-el moika-heading" style="margin-bottom: 10px;">Также автомойка «ТриА» <br>к вашим услугам!
+            </h1>
             <a class="hero-btn hidden-el" href="#avto">ИНФОРМАЦИЯ</a>
         </div>
     </section>
@@ -365,7 +386,8 @@
             <div class="row" style="align-items: center;margin-top: 0;">
                 <div class="facilities-col no-mrg hidden">
                     <div class="col-2">
-                        <h1>Автомоечный комплекс <span style="color:#E3B873">«ТриА»</span> <br> распологает 5 боксами, в которых <br> оказывается широчайший спектр
+                        <h1>Автомоечный комплекс <span style="color:#E3B873">«ТриА»</span> <br> распологает 5 боксами, в
+                            которых <br> оказывается широчайший спектр
                             услуг <br> автомоечного комплекса:</h1>
                         <ul style="margin-left: 8%;">
                             <li>облив кузова автомобиля</li>

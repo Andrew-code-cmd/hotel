@@ -21,6 +21,52 @@
             overflow-x: hidden;
         }
 
+        .form-info {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            position: fixed;
+            z-index: 100;
+            backdrop-filter: brightness(65%) blur(5px);
+            transition: 0.5s;
+        }
+
+        .form-box-info {
+            position: relative;
+            width: 506px;
+            height: 529px;
+            background: #131313;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 20px;
+            transition: 0.5s;
+        }
+
+        .form-box-text p{
+            color: #fff;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 18px;
+        }
+
+        .info {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #b3915a;
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 300;
+            padding: 5px 10px;
+            transition: 0.5s;
+        }
+
+        .info:hover {
+            background-color: #927649;
+        }
+
         .contacts {
             margin-top: 0%;
             position: relative;
@@ -83,7 +129,8 @@
             font-size: 26px;
             color: #c5a674;
         }
-        .room-price span{
+
+        .room-price span {
             font-size: 24px;
         }
 
@@ -93,60 +140,78 @@
             align-items: center;
             justify-content: space-between;
         }
-        @media (max-width: 1152px){
-            .room-heading{
+
+        @media (max-width: 1152px) {
+            .room-heading {
                 font-size: 50px;
             }
-            .room-price{
+
+            .room-price {
                 font-size: 22px;
             }
         }
-        @media (max-width: 805px){
-            .prices{
+
+        @media (max-width: 805px) {
+            .prices {
                 display: block;
             }
-            .hero-btn{
+
+            .hero-btn {
                 margin-top: 10px;
             }
-            .swiper{
+
+            .swiper {
                 height: 450px;
             }
         }
-        @media (max-width: 565px){
-            .swiper{
+
+        @media (max-width: 565px) {
+            .swiper {
                 height: 400px;
             }
         }
-        @media (max-width: 426px){
-            .swiper{
+
+        @media (max-width: 426px) {
+            .swiper {
                 height: 350px;
                 margin-top: 0;
             }
-            .room-heading{
+
+            .room-heading {
                 font-size: 38px;
             }
+            .form-box-info{
+                height: 570px;
+            }
+            .info {
+                font-size: 18px;
+            }
         }
-        @media (max-width: 390px){
-            .swiper{
+
+        @media (max-width: 390px) {
+            .swiper {
                 height: 320px;
             }
-            .room-price{
+
+            .room-price {
                 font-size: 19px;
             }
-            .room-price span{
+
+            .room-price span {
                 font-size: 17px;
             }
-            .room-heading{
+
+            .room-heading {
                 font-size: 36px;
             }
         }
 
-        .numbers{
+        .numbers {
             margin-top: 0px;
             margin-bottom: 13px;
         }
 
-        .numbers a{
+        .numbers a {
             text-decoration: none;
             color: #fff;
             font-size: 18px;
@@ -179,9 +244,27 @@
                         <label>Количество</label>
                         <input class="form-input" type="number" placeholder="Количество человек" required>
                     </div>
+                    <div class="form-input-box">
+                        <input type="hidden" value="{{ object.title }}">
+                    </div>
                     <button style="margin-top: -40px; font-size: 13px;transition: 0.7s;" class="hero-btn"
                         onclick="ShowBron()">ЗАБРОНИРОВАТЬ</button>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-info">
+        <div class="form-box-info">
+            <i class="fa-solid fa-xmark exit" onclick="HideInfo()"></i>
+            <div class="form-box-text">
+                <p>{{ object.details }}</p>
+                <br>
+                <p><b>Проживание в номерах с животным:</b></p><br>
+                <p>1. Собака мелкой породы - 500 руб.</p><br>
+                <p>2. Собака средней породы - 1000 руб.</p><br>
+                <p>При заселении с домашним животным, гость обязан внести в кассу гостиницы депозит в размере 2000 руб. за возможные риски по ущербу имущества Гостиницы.</p><br>
+                <p>Заселение с кошками <b>ЗАПРЕЩЕНО</b></p>
             </div>
         </div>
     </section>
@@ -198,17 +281,20 @@
                 <div class="swiper hidden">
                     <div class="swiper-wrapper">
                         {% for img in object.roomphoto_set.all %}
-                        <div class="swiper-slide"><img src="{{ img.title.url }}"></div>
+                            <div class="swiper-slide"><img src="{{ img.title.url }}"></div>
                         {% endfor %}
                     </div>
                     <div class="swiper-button-prev" style="color: #c5a674"></div>
                     <div class="swiper-button-next" style="color: #c5a674"></div>
                 </div>
             </div>
+            <a class="info hidden-el" onclick="ShowInfo()">информация о номере</a>
             <div class="prices">
                 <div>
-                    <p class="room-price hidden" style="padding-top: 3%;">Цена без завтрака: <span style="color: #fff;">{{ object.price }}</span></p>
-                    <p class="room-price hidden">Цена с завтраком: <span style="color: #fff;">{{ object.price_2 }}</span></p>
+                    <p class="room-price hidden" style="padding-top: 3%;">Цена без завтрака: <span
+                            style="color: #fff;">{{ object.price }} руб</span></p>
+                    <p class="room-price hidden">Цена с завтраком: <span style="color: #fff;">{{ object.price_2 }}
+                            руб</span></p>
                 </div>
                 <a class="hero-btn hidden-el" onclick="ShowBron()">ЗАБРОНИРОВАТЬ НОМЕР</a>
             </div>
@@ -330,7 +416,7 @@
         }
 
         var navlinks = document.getElementById("navLinks");
-        
+
 
         function showMenu() {
             navlinks.style.right = "0";
@@ -340,6 +426,16 @@
         function hideMenu() {
             navlinks.style.right = "-200px";
             buddy.classList.toggle("scroll");
+        }
+
+        var formInfo = document.querySelector(".form-info");
+
+        function ShowInfo(){
+            formInfo.style.display = 'flex'
+        }
+
+        function HideInfo(){
+            formInfo.style.display = 'none';
         }
     </script>
 </body>
