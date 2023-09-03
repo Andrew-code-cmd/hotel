@@ -275,26 +275,26 @@
                     <h2 class="form-heading">Забронировать номер</h2>
                     <div class="form-input-box">
                         <label>Имя</label>
-                        <input class="form-input" type="text" placeholder="Ваше имя" required>
+                        <input name="name" class="form-input" type="text" placeholder="Ваше имя" required>
                     </div>
                     <div class="form-input-box">
                         <label>Телефон</label>
-                        <input class="form-input" type="text" placeholder="Номер телефона" required>
+                        <input name="phone" class="form-input" type="text" placeholder="Номер телефона" required>
                     </div>
                     <div class="form-input-box">
                         <label>Дата въезда</label>
-                        <input class="form-input" type="datetime-local" placeholder="Дата въезда" required>
+                        <input name="date_incoming" class="form-input" type="datetime-local" placeholder="Дата въезда" required>
                     </div>
                     <div class="form-input-box">
                         <label>Дата выезда</label>
-                        <input class="form-input" type="datetime-local" placeholder="Дата въезда" required>
+                        <input name="date_outcoming" class="form-input" type="datetime-local" placeholder="Дата въезда" required>
                     </div>
                     <div class="form-input-box" style="margin-bottom: -20px;">
                         <label>Количество</label>
-                        <input class="form-input" type="number" placeholder="Количество человек" required>
+                        <input name="person" class="form-input" type="number" placeholder="Количество человек" required>
                     </div>
                     <div class="form-input-box">
-                        <select id="selcolor" style="width: 100%; margin-bottom: 10px;">
+                        <select name="room" id="selcolor" style="width: 100%; margin-bottom: 10px;">
                             <option value="Люкс">Люкс</option>
                             <option value="Одноместный">Одноместный</option>
                             <option value="Двухместный с одной кроватью">Двухместный с одной кроватью</option>
@@ -303,7 +303,7 @@
                             <option value="Люкс двухкомнатный">Люкс двухкомнатный</option>
                         </select>
                     </div>
-                    <button style="margin-top: 10px; font-size: 13px;transition: 0.7s;" class="hero-btn"
+                    <button type="submit" style="margin-top: 10px; font-size: 13px;transition: 0.7s;" class="hero-btn"
                         onclick="ShowBron()">ЗАБРОНИРОВАТЬ</button>
                 </form>
             </div>
