@@ -18,7 +18,7 @@ Django админка, готовая к бою
 
 
 
-Как запустить? 
+## Как запустить? 
 
 ```bash
 git clone https://github.com/Andrew-code-cmd/hotel.git
